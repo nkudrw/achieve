@@ -48,3 +48,4 @@ gem 'twitter-bootstrap-rails'
 gem 'jquery-turbolinks'
 gem 'devise'
 gem 'therubyracer'
+gem 'rails_12factor', group: :production
