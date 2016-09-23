@@ -49,3 +49,4 @@ gem 'jquery-turbolinks'
 gem 'devise'
 gem 'therubyracer'
 gem 'rails_12factor', group: :production
+gem 'faker'
