@@ -54,3 +54,4 @@ gem 'therubyracer'
 gem 'rails_12factor', group: :production
 gem 'faker'
 gem 'rails_admin'
+gem 'cancan'
