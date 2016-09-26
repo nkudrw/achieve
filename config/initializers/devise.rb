@@ -272,11 +272,11 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   if Rails.env.production?
-     config.omniauth :facebook, ENV["202005076879580"], ENV["3e2da0bec47302249a29bbc018a87812"], scope: 'email', display: 'popup', info_fields: 'name, email'
-     config.omniauth :twitter, ENV["pHKj835OHcFwSkiTfnqiUDgvM"], ENV["e1N6n1RF9QgqUNERgvBQieq64jKQh01rF8ygOx1YaW42k5iePq"], scope: 'email', display: 'popup', info_fields: 'name, email'
-   else
-     config.omniauth :facebook, ENV["113836839079521"], ENV["d51157abacf4a3e5f324148ca27db81a"], scope: 'email', display: 'popup', info_fields: 'name, email'
-     config.omniauth :twitter, ENV["IGiMoGQZAcPSRZicO6x1ngjYm"], ENV["vkdTCVnObughH9z9k3lEkFR3e1Sv5ZedyoMzRkH3s58ED3ctDH"], scope: 'email', display: 'popup', info_fields: 'name, email'
-   end
+   config.omniauth :facebook, ENV["FACEBOOK_ID_PRODUCTION"], ENV["FACEBOOK_SECRET_PRODUCTION"], scope: 'email', display: 'popup', info_fields: 'name, email'
+   config.omniauth :twitter, ENV["TWITTER_ID_PRODUCTION"], ENV["TWITTER_SECRET_PRODUCTION"], scope: 'email', display: 'popup', info_fields: 'name, email'
+ else
+   config.omniauth :facebook, ENV["FACEBOOK_ID_DEVELOPMENT"], ENV["FACEBOOK_SECRET_DEVELOPMENT"], scope: 'email', display: 'popup', info_fields: 'name, email'
+   config.omniauth :twitter, ENV["TWITTER_ID_DEVELOPMENT"], ENV["TWITTER_SECRET_DEVELOPMENT"], scope: 'email', display: 'popup', info_fields: 'name, email'
+ end
 
 end
