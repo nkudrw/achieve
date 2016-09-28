@@ -1,0 +1,12 @@
+<h2>フォロ一一覧</h2>
+    <% user.followed_users.each do |followed_user| %>
+    <%= profile_img(followed_user) %>
+    <%= followed_user.name %>
+    <br>
+    <% end %>
+    <h2>フォロワー一覧</h2>
+    <% user.followers.each do |follower| %>
+    <%= profile_img(follower) %>
+    <%= follower.name %>
+    <br>
+    <% end %>
