@@ -1,11 +1,13 @@
 <div class="container">
-  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+ <div class="wrapper col-md-4 col-md-offset-4 col-sm-10 col-sm-offset-1">
     <p><%= notice %></p>
     <h1>ブログ一覧</h1>
       <%= link_to "ブログを作成する", new_blog_path, class: 'btn btn-default' %>
     <% @blogs.each do |blog| %>
     <div class="row">
+        <%= link_to blog_path(blog) do%>
       <h4><strong><%= blog.title %></strong></h4>
+      <% end %>
       <p><%= profile_img(blog.user) if profile_img(blog.user) %><%= blog.user.name %></p>
       <p><%= blog.content %></p>
       <%= link_to "編集", edit_blog_path(blog.id), class: 'btn btn-default btn-sm btn-success' %>
