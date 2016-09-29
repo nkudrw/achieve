@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928050256) do
+ActiveRecord::Schema.define(version: 20160929081852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,25 @@ ActiveRecord::Schema.define(version: 20160928050256) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.boolean  "read",            default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -53,6 +72,33 @@ ActiveRecord::Schema.define(version: 20160928050256) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+
+  create_table "submit_requests", force: :cascade do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.integer  "charge_id",  null: false
+    t.integer  "status"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "submit_requests", ["task_id"], name: "index_submit_requests_on_task_id", using: :btree
+  add_index "submit_requests", ["user_id"], name: "index_submit_requests_on_user_id", using: :btree
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "user_id",                    null: false
+    t.string   "title"
+    t.text     "content"
+    t.datetime "deadline"
+    t.integer  "charge_id",                  null: false
+    t.boolean  "done",       default: false
+    t.integer  "status",     default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -86,4 +132,9 @@ ActiveRecord::Schema.define(version: 20160928050256) do
 
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
+  add_foreign_key "submit_requests", "tasks"
+  add_foreign_key "submit_requests", "users"
+  add_foreign_key "tasks", "users"
 end
