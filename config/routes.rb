@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'notifications/index'
+
   resources :tasks
   get 'relationships/create'
 
