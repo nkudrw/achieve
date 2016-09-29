@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
 
   resources :tasks
-  resources :users
   get 'relationships/create'
 
   get 'relationships/destroy'
@@ -28,7 +27,7 @@ end
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
 }
-resources :users, only: [:index] do
+resources :users do
     resources :tasks
     resources :submit_requests , shallow: true do
       get 'approve'
