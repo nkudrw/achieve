@@ -39,20 +39,25 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
-gem 'dotenv-rails'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
       gem 'letter_opener_web'
       gem 'pry-rails'
       gem 'better_errors'
+      gem 'capistrano', '3.6.0'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+gem 'capistrano-rbenv'
+gem 'capistrano3-unicorn'
 end
 
 
 gem 'twitter-bootstrap-rails'
 gem 'jquery-turbolinks'
 gem 'devise'
-gem 'therubyracer'
+gem 'therubyracer', platforms: :ruby
 gem 'rails_12factor', group: :production
 gem 'faker'
 gem 'rails_admin'
@@ -64,3 +69,5 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'pusher'
 gem 'fog'
+gem 'unicorn'
+gem 'dotenv-rails'
